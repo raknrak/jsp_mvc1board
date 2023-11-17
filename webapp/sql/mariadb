@@ -1,0 +1,42 @@
+DROP TABLE IF EXISTS member;
+CREATE TABLE member(
+	id varchar(10) NOT NULL,
+	pass varchar(10) NOT NULL,
+	name varchar(10) NOT NULL,
+	register date DEFAULT (current_date) NOT NULL,
+	PRIMARY key(id)
+);
+
+DROP TABLE IF EXISTS board;
+CREATE TABLE board(
+	num int PRIMARY KEY AUTO_INCREMENT,
+	title varchar(20) NOT NULL,
+	content varchar(200) NOT NULL,
+	id varchar(10) NOT NULL,
+	postdate date DEFAULT (current_date) NOT NULL,
+	visitcount decimal(6)
+);
+
+ALTER TABLE board
+  ADD CONSTRAINT board_mem_fk FOREIGN KEY (id)
+  REFERENCES MEMBER (id);
+
+INSERT INTO member(id, pass, name) values('musthave', '1234', '머스트해브');
+SELECT * FROM MEMBER;
+
+
+INSERT INTO board(title, content, id, visitcount)
+values('제목1입니다.', '내용1입니다.','musthave', 0);
+
+INSERT INTO board(title, content, id, visitcount)
+values('지금은 봄입니다', '봄의왈츠','musthave', 0);
+
+INSERT INTO board(title, content, id, visitcount)
+values('지금은 여름입니다', '여름향기','musthave', 0);
+
+INSERT INTO board(title, content, id, visitcount)
+values('지금은 가을입니다', '가을동화','musthave', 0);
+
+INSERT INTO board(title, content, id, visitcount)
+values('지금은 겨울입니다', '겨울연가','musthave', 0);
+
